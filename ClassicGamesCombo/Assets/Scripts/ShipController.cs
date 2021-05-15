@@ -76,10 +76,10 @@ public class ShipController : MonoBehaviour
 
     void Fire()
     {
-        Bullet.transform.position = transform.position;
-        Bullet.GetComponent<Bullet>().SetTeam(1);
-        Bullet.GetComponent<Bullet>().SetDirection(Vector2.up);
-        Instantiate(Bullet);
+        GameObject newBullet = Instantiate(Bullet);
+        newBullet.transform.position = transform.position;
+        newBullet.GetComponent<Bullet>().SetTeam(1);
+        newBullet.GetComponent<Bullet>().SetDirection(Vector2.up);
 
         FireTimer = FireRate;
     }

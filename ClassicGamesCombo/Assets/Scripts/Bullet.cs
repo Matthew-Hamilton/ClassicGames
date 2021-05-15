@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Bullet on team " + Team + " triggered by " + collision.tag);
         if(Team == 0)
         {
             if(collision.tag == "Player")

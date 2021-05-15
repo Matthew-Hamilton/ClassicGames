@@ -34,10 +34,14 @@ public class Enemy : MonoBehaviour
 
             //Something wrong here, It goes off the screen
             Destination = transform.position + new Vector3(Direction * Controller.MoveDistance, 0, 0);
-            if (Destination.x + transform.lossyScale.x > Controller.width / 2 || Destination.x - transform.lossyScale.x < -Controller.width / 2)
+            Debug.Log(Destination);
+
+            //Check the enemy position to see if it is off the screen
+            if (Destination.x  > 8 || Destination.x < -8)
             {
                 Destination = transform.position + new Vector3(0, -1 * Controller.MoveDistance, 0);
                 Direction = -Direction;
+                Debug.Log(Destination);
             }
 
             MoveTimer = Controller.MoveFrequency;
@@ -48,6 +52,8 @@ public class Enemy : MonoBehaviour
         {
             transform.position += (Destination - transform.position).normalized * Controller.MoveSpeed * Time.deltaTime;
         }
+        else
+            transform.position = Destination;
 
         MoveTimer -= Time.deltaTime;
     }
