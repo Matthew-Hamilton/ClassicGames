@@ -10,8 +10,15 @@ public class Enemy : MonoBehaviour
 
     public GameObject _EnemyController;
     EnemyController Controller;
-    int Direction;
-    Vector3 Destination;
+    WaveSpawn WaveController;
+
+
+    public int RowNumber;
+    public int NumInRow;
+    List<GameObject> myRow;
+
+    public int Direction;
+    public Vector3 Destination;
 
     float MoveTimer;
 
@@ -22,6 +29,7 @@ public class Enemy : MonoBehaviour
         Direction = 1;
         GetComponent<SpriteRenderer>().color = Color.red;
         Controller = _EnemyController.GetComponent<EnemyController>();
+        WaveController = _EnemyController.GetComponent<WaveSpawn>();
         Destination = transform.position;
 
     }
@@ -31,36 +39,48 @@ public class Enemy : MonoBehaviour
 
         if (MoveTimer <= 0)
         {
-
-            //Something wrong here, It goes off the screen
-            Destination = transform.position + new Vector3(Direction * Controller.MoveDistance, 0, 0);
-            Debug.Log(Destination);
-
-            //Check the enemy position to see if it is off the screen
-            if (Destination.x  > 8 || Destination.x < -8)
-            {
-                Destination = transform.position + new Vector3(0, -1 * Controller.MoveDistance, 0);
-                Direction = -Direction;
-                Debug.Log(Destination);
-            }
-
-            MoveTimer = Controller.MoveFrequency;
-
+            Move();
         }
+
+
+        MoveTimer -= Time.deltaTime;
+    }
+
+    // Update is called once per frame
+    void Move()
+    {
 
         if ((transform.position - Destination).magnitude > 0.05)
         {
             transform.position += (Destination - transform.position).normalized * Controller.MoveSpeed * Time.deltaTime;
         }
         else
+        {
             transform.position = Destination;
-
-        MoveTimer -= Time.deltaTime;
+            Controller.CheckDrop = true;
+            MoveTimer = Controller.MoveFrequency;
+            Debug.Log("Reset Time To: " +MoveTimer);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetRowInfo(int rowNum, int numInRow)
     {
+        RowNumber = rowNum;
+        NumInRow = numInRow;
+    }
 
+    public void SetRow(List<GameObject> Row)
+    {
+        myRow = Row;
+    }
+
+    public void ChangeDirection()
+    {
+        Direction = -Direction;
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        Destination = transform.position + destination;
     }
 }

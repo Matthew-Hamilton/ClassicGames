@@ -74,10 +74,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fbdd4a868b78243926d0d8f8fba814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveFrequency: 1
-  MoveSpeed: 1
-  MoveDistance: 2
+  MoveFrequency: 4
+  MoveSpeed: 10
+  MoveDistance: 1
   FireRate: 0
   NumAlive: 0
+  CheckDrop: 1
   height: 0
   width: 0
