@@ -12,11 +12,6 @@ public class Enemy : MonoBehaviour
     EnemyController Controller;
     WaveSpawn WaveController;
 
-
-    public int RowNumber;
-    public int NumInRow;
-    List<GameObject> myRow;
-
     public int Direction;
     public Vector3 Destination;
 
@@ -28,15 +23,14 @@ public class Enemy : MonoBehaviour
     {
         Direction = 1;
         GetComponent<SpriteRenderer>().color = Color.red;
-        Controller = _EnemyController.GetComponent<EnemyController>();
         WaveController = _EnemyController.GetComponent<WaveSpawn>();
-        Destination = transform.position;
+        MoveTimer = Controller.MoveFrequency;
+        Destination = transform.position + new Vector3(Direction * Controller.MoveDistance,0,0);
 
     }
 
     private void FixedUpdate()
     {
-
         if (MoveTimer <= 0)
         {
             Move();
@@ -57,21 +51,10 @@ public class Enemy : MonoBehaviour
         else
         {
             transform.position = Destination;
-            Controller.CheckDrop = true;
+            Controller.SetCheckDrop();
             MoveTimer = Controller.MoveFrequency;
             Debug.Log("Reset Time To: " +MoveTimer);
         }
-    }
-
-    public void SetRowInfo(int rowNum, int numInRow)
-    {
-        RowNumber = rowNum;
-        NumInRow = numInRow;
-    }
-
-    public void SetRow(List<GameObject> Row)
-    {
-        myRow = Row;
     }
 
     public void ChangeDirection()
@@ -82,5 +65,10 @@ public class Enemy : MonoBehaviour
     public void SetDestination(Vector3 destination)
     {
         Destination = transform.position + destination;
+    }
+
+    public void SetController(EnemyController controller)
+    {
+        Controller = controller;
     }
 }

@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 572078410140744837, guid: f7fb6314758993d44bb1b56debf26192, type: 3}
-  RoundBreakLength: 1
+  RoundBreakLength: 0
   enemyController: {fileID: 8170480705921670323}
 --- !u!114 &8170480705921670335
 MonoBehaviour:
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fbdd4a868b78243926d0d8f8fba814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveFrequency: 4
+  MoveFrequency: 0.5
   MoveSpeed: 10
   MoveDistance: 1
   FireRate: 0

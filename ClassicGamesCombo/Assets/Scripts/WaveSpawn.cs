@@ -7,8 +7,8 @@ public class WaveSpawn : MonoBehaviour
     public GameObject enemyPrefab;
 
     int roundNumber = 0;
-    int numRows = 1;
-    int numPerRow = 1;
+    int numRows = 3;
+    int numPerRow = 8;
 
     
 
@@ -67,16 +67,11 @@ public class WaveSpawn : MonoBehaviour
             for(int x = 0; x< numPerRow + (int)roundNumber/2; x++)
             {
                 GameObject newEnemy = Instantiate(enemyPrefab);
-                newEnemy.transform.position = new Vector3(-4 + x, 8 + y, 0);
-                newEnemy.GetComponent<Enemy>().SetRowInfo(y, x);
+                newEnemy.transform.position = new Vector3((-(numPerRow +(int)roundNumber / 2)/2) + 0.5f + x, 7.5f + y, 0);
+                newEnemy.GetComponent<Enemy>().SetController(Controller);
                 NewRow.Add(newEnemy);
             }
             EnemyRows.Add(NewRow);
-
-            foreach(GameObject enemy in NewRow)
-            {
-                enemy.GetComponent<Enemy>().SetRow(NewRow);
-            }
             Controller.AddEnemies(NewRow.Count);
             Debug.Log("Row with " + NewRow.Count + " enemies");
             NewRow = new List<GameObject>();

@@ -32,12 +32,16 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(CheckDrop)
+        if (CheckDrop)
+        {
             DropCheck();
+            Debug.Log("Please");
+        }
     }
 
     void DropCheck()
     {
+        Debug.Log("This Called");
         for (int i = 0; i < WaveRows.Count; i++)
         {
             if (WaveRows[i][0].GetComponent<Enemy>().Direction == 1)
@@ -52,7 +56,10 @@ public class EnemyController : MonoBehaviour
                 }
                 else
                     foreach (GameObject enemyGO in WaveRows[i])
+                    {
                         enemyGO.GetComponent<Enemy>().SetDestination(new Vector3(enemyGO.GetComponent<Enemy>().Direction, 0, 0) * MoveDistance);
+                        Debug.Log("Called");
+                    }
 
 
             if (WaveRows[i][0].GetComponent<Enemy>().Direction == -1)
@@ -89,5 +96,10 @@ public class EnemyController : MonoBehaviour
     public void SetWave(List<List<GameObject>> inputWaves)
     {
         WaveRows = inputWaves;
+    }
+
+    public void SetCheckDrop()
+    {
+        CheckDrop = true;
     }
 }
