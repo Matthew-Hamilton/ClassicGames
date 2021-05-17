@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
+    public GameObject ScoreGO;
+    Score score;
     public float MoveFrequency = 1;
     public float MoveSpeed = 10;
     public int MoveDistance = 2;
@@ -23,7 +26,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        score = ScoreGO.GetComponent<Score>();
         WaveRows = new List<List<GameObject>>();
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
@@ -90,14 +93,18 @@ public class EnemyController : MonoBehaviour
 
     public void ReportDeath(Enemy deadEnemys)
     {
-        for(int i = 0; i < WaveRows.Count; i++)
+
+        NumAlive--;
+        for (int i = 0; i < WaveRows.Count; i++)
         {
-            NumAlive--;
             if (WaveRows[i].Contains(deadEnemys.transform.gameObject))
             {
                 WaveRows[i].Remove(deadEnemys.transform.gameObject);
+                score.AddScore(10);
                 if (WaveRows[i].Count <= 0)
+                {
                     WaveRows.RemoveAt(i);
+                }
                 return;
             }
         }

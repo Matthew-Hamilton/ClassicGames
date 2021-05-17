@@ -13,9 +13,9 @@ public class WaveSpawn : MonoBehaviour
     
 
 
-    bool TimerActive;
+    public bool TimerActive;
     public float RoundBreakLength;
-    float RoundBreakTimer;
+    public float RoundBreakTimer;
 
     public GameObject enemyController;
     EnemyController Controller;
@@ -35,7 +35,7 @@ public class WaveSpawn : MonoBehaviour
             RoundCountDown();
         }
 
-        if(Controller.NumAlive == 0)
+        if(Controller.NumAlive == 0 && !TimerActive)
         {
             StartRoundCountDown();
         }
@@ -44,6 +44,8 @@ public class WaveSpawn : MonoBehaviour
     void StartRoundCountDown()
     {
         TimerActive = true;
+        numRows++;
+        numPerRow += 2;
     }
 
     void RoundCountDown()
@@ -78,6 +80,7 @@ public class WaveSpawn : MonoBehaviour
         }
         Controller.SetWave(EnemyRows);
         Debug.Log("Wave with " + EnemyRows.Count + " rows");
+        TimerActive = false;
         return;
 
     }
