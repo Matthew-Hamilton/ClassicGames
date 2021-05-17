@@ -20,6 +20,7 @@ public class ShipController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         FireTimer = 0;
         cam = Camera.main;
         height = 2f * cam.orthographicSize;

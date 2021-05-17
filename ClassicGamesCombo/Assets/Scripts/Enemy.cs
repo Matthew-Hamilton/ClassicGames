@@ -6,7 +6,7 @@ using UnityEngine.U2D;
 public class Enemy : MonoBehaviour
 {
 
-    int Health;
+    public int Health;
 
     public GameObject _EnemyController;
     EnemyController Controller;
@@ -70,5 +70,12 @@ public class Enemy : MonoBehaviour
     public void SetController(EnemyController controller)
     {
         Controller = controller;
+    }
+
+    public void Die()
+    {
+        Controller.ReportDeath(this);
+
+        Destroy(transform.gameObject);
     }
 }

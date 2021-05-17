@@ -90,7 +90,17 @@ public class EnemyController : MonoBehaviour
 
     public void ReportDeath(Enemy deadEnemys)
     {
-        NumAlive--;
+        for(int i = 0; i < WaveRows.Count; i++)
+        {
+            NumAlive--;
+            if (WaveRows[i].Contains(deadEnemys.transform.gameObject))
+            {
+                WaveRows[i].Remove(deadEnemys.transform.gameObject);
+                if (WaveRows[i].Count <= 0)
+                    WaveRows.RemoveAt(i);
+                return;
+            }
+        }
     }
 
     public void SetWave(List<List<GameObject>> inputWaves)

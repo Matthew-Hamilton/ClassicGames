@@ -49,7 +49,9 @@ public class Bullet : MonoBehaviour
             }
             if (collision.tag == "Enemy")
             {
-                //collision.GetComponent<EnemyController>().Health -= Controller.Damage;
+                collision.GetComponent<Enemy>().Health -= Controller.Damage;
+                if (collision.GetComponent<Enemy>().Health <= 0)
+                    collision.GetComponent<Enemy>().Die();
                 Destroy(transform.gameObject);
                 return;
             }
@@ -59,7 +61,9 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Enemy")
             {
-                //collision.GetComponent<EnemyController>().Health -= Controller.Damage;
+                collision.GetComponent<Enemy>().Health -= Controller.Damage;
+                if (collision.GetComponent<Enemy>().Health <= 0)
+                    collision.GetComponent<Enemy>().Die();
                 Destroy(transform.gameObject);
                 return;
             }
