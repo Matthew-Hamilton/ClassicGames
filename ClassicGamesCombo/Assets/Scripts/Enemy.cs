@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     EnemyController Controller;
     WaveSpawn WaveController;
 
+    public Color myColour;
+
     public int Direction;
     public Vector3 Destination;
 
@@ -31,6 +33,10 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(transform.gameObject.GetComponent<SpriteRenderer>().color != myColour)
+        {
+            transform.gameObject.GetComponent<SpriteRenderer>().color = myColour;
+        }
         if (MoveTimer <= 0)
         {
             Move();
@@ -46,14 +52,14 @@ public class Enemy : MonoBehaviour
 
         if ((transform.position - Destination).magnitude > 0.05)
         {
-            transform.position += (Destination - transform.position).normalized * Controller.MoveSpeed * Time.deltaTime;
+            transform.position += (Destination - transform.position).normalized * Controller.MoveSpeed * Time.fixedDeltaTime;
         }
         else
         {
             transform.position = Destination;
+            Debug.Log("Destination: " +Destination);
             Controller.SetCheckDrop();
             MoveTimer = Controller.MoveFrequency;
-            Debug.Log("Reset Time To: " +MoveTimer);
         }
     }
 
@@ -70,6 +76,12 @@ public class Enemy : MonoBehaviour
     public void SetController(EnemyController controller)
     {
         Controller = controller;
+    }
+
+    public void SetColour(Color color)
+    {
+        myColour = color;
+        transform.gameObject.GetComponent<SpriteRenderer>().color = color;
     }
 
     public void Die()

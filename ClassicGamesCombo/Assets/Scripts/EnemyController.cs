@@ -50,37 +50,40 @@ public class EnemyController : MonoBehaviour
             if (WaveRows[i][0].GetComponent<Enemy>().Direction == 1)
                 if (WaveRows[i][WaveRows[i].Count - 1].transform.position.x + MoveDistance > 9)
                 {
-                    foreach (GameObject enemyGO in WaveRows[i])
-                    {
-                        enemyGO.GetComponent<Enemy>().SetDestination(Vector3.down * MoveDistance);
-                        enemyGO.GetComponent<Enemy>().ChangeDirection();
-                    }
-                    continue;
+                    for (int x = 0; x < WaveRows.Count; x++)
+                        foreach (GameObject enemyGO in WaveRows[x])
+                        {
+                            enemyGO.GetComponent<Enemy>().SetDestination(Vector3.down * MoveDistance);
+                            enemyGO.GetComponent<Enemy>().ChangeDirection();
+                        }
+
+                    CheckDrop = false;
+                    return;
                 }
                 else
                     foreach (GameObject enemyGO in WaveRows[i])
                     {
                         enemyGO.GetComponent<Enemy>().SetDestination(new Vector3(enemyGO.GetComponent<Enemy>().Direction, 0, 0) * MoveDistance);
-                        Debug.Log("Called");
                     }
 
 
             if (WaveRows[i][0].GetComponent<Enemy>().Direction == -1)
                 if (WaveRows[i][0].transform.position.x + MoveDistance < -7)
                 {
-                    foreach (GameObject enemyGO in WaveRows[i])
-                    {
-                        enemyGO.GetComponent<Enemy>().SetDestination(Vector3.down * MoveDistance);
-                        enemyGO.GetComponent<Enemy>().ChangeDirection();
-                    }
-                    continue;
+                    for (int x = 0; x < WaveRows.Count; x++)
+                        foreach (GameObject enemyGO in WaveRows[x])
+                        {
+                            enemyGO.GetComponent<Enemy>().SetDestination(Vector3.down * MoveDistance);
+                            enemyGO.GetComponent<Enemy>().ChangeDirection();
+                        }
+
+                    CheckDrop = false;
+                    return;
                 }
                 else
                     foreach (GameObject enemyGO in WaveRows[i])
                         enemyGO.GetComponent<Enemy>().SetDestination(new Vector3(enemyGO.GetComponent<Enemy>().Direction, 0, 0) * MoveDistance);
 
-
-            Debug.Log("Set New Destinations");
 
         }
         CheckDrop = false;

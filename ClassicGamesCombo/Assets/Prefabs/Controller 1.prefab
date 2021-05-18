@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 572078410140744837, guid: f7fb6314758993d44bb1b56debf26192, type: 3}
   TimerActive: 0
-  RoundBreakLength: 1
+  RoundBreakLength: 3
   RoundBreakTimer: 0
   enemyController: {fileID: 8170480705921670323}
 --- !u!114 &8170480705921670335
@@ -77,8 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreGO: {fileID: 844383762069775839, guid: 1dd29e15a4ba10b4bb01fe9627e4130c, type: 3}
-  MoveFrequency: 0.5
-  MoveSpeed: 10
+  MoveFrequency: 1
+  MoveSpeed: 5
   MoveDistance: 1
   FireRate: 0
   NumAlive: 0
