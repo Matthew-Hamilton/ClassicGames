@@ -108,7 +108,7 @@ public class WaveSpawn : MonoBehaviour
             WaveTextGO.active = true;
             WaveCountDownGO.active = true;
         }
-        WaveText.text = "Round " + roundNumber.ToString();
+        WaveText.text = "ROUND " + roundNumber.ToString();
         WaveCountDownText.text = ((int)RoundBreakTimer +1).ToString();
     }
 
