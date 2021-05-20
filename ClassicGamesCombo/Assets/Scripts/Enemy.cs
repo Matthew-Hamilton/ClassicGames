@@ -14,15 +14,24 @@ public class Enemy : MonoBehaviour
 
     public Color myColour;
 
+    public int numInRow;
     public int Direction;
     public Vector3 Destination;
 
+    public bool isFront;
+
     float MoveTimer;
+
+
+    public GameObject Bullet;
+    float ShotTimer;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+        ShotTimer = Random.value * Controller.FireRate;
         Direction = 1;
         GetComponent<SpriteRenderer>().color = Color.red;
         WaveController = _EnemyController.GetComponent<WaveSpawn>();
@@ -41,9 +50,13 @@ public class Enemy : MonoBehaviour
         {
             Move();
         }
+        if(isFront && ShotTimer <=0)
+        {
+            Fire();
+        }
 
-
-        MoveTimer -= Time.deltaTime;
+        ShotTimer -= Time.fixedDeltaTime;
+        MoveTimer -= Time.fixedDeltaTime;
     }
 
     // Update is called once per frame
@@ -61,6 +74,17 @@ public class Enemy : MonoBehaviour
             Controller.SetCheckDrop();
             MoveTimer = Controller.MoveFrequency;
         }
+    }
+
+    void Fire()
+    {
+        GameObject newBullet = Instantiate(Bullet);
+        newBullet.transform.position = transform.position;
+        newBullet.GetComponent<Bullet>().SetTeam(-1);
+        newBullet.GetComponent<Bullet>().SetDirection(-Vector2.up);
+
+        ShotTimer = Random.value * Controller.FireRate;
+        //ShotTimer = Controller.FireRate;
     }
 
     public void ChangeDirection()
@@ -82,6 +106,20 @@ public class Enemy : MonoBehaviour
     {
         myColour = color;
         transform.gameObject.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void SetNumInRow(int _num)
+    {
+        numInRow = _num;
+    }
+    public int GetNumInRow()
+    {
+        return numInRow;
+    }
+
+    public void SetFront(bool front)
+    {
+        isFront = front;
     }
 
     public void Die()

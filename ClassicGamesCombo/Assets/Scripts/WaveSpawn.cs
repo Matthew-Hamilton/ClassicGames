@@ -87,6 +87,11 @@ public class WaveSpawn : MonoBehaviour
                 newEnemy.transform.position = new Vector3((-numPerRow/2) + 0.5f + x, 6.5f - y, 0);
                 newEnemy.GetComponent<Enemy>().SetColour(rowColour);
                 newEnemy.GetComponent<Enemy>().SetController(Controller);
+                newEnemy.GetComponent<Enemy>().SetNumInRow(x);
+                if(y == numRows -1)
+                    newEnemy.GetComponent<Enemy>().SetFront(true);
+                else
+                    newEnemy.GetComponent<Enemy>().SetFront(false);
                 NewRow.Add(newEnemy);
             }
             EnemyRows.Add(NewRow);

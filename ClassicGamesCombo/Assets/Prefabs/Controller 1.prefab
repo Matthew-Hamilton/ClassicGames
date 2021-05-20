@@ -60,6 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 572078410140744837, guid: f7fb6314758993d44bb1b56debf26192, type: 3}
+  WaveTextGO: {fileID: 0}
+  WaveCountDownGO: {fileID: 0}
   TimerActive: 0
   RoundBreakLength: 3
   RoundBreakTimer: 0
@@ -80,7 +82,7 @@ MonoBehaviour:
   MoveFrequency: 1
   MoveSpeed: 5
   MoveDistance: 1
-  FireRate: 0
+  FireRate: 5
   NumAlive: 0
   CheckDrop: 1
   height: 0

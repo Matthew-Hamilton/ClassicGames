@@ -108,7 +108,24 @@ public class EnemyController : MonoBehaviour
                 {
                     WaveRows.RemoveAt(i);
                 }
+                RecalculateFront();
                 return;
+            }
+        }
+    }
+
+    public void RecalculateFront()
+    {
+        List<int> filledPositions = new List<int>();
+        for(int y = 0; y < WaveRows.Count; y++)
+        {
+            for (int x = 0; x < WaveRows[(WaveRows.Count-1) - y].Count; x++)
+            {
+                if(!filledPositions.Contains(WaveRows[(WaveRows.Count -1) - y][x].GetComponent<Enemy>().GetNumInRow()))
+                {
+                    filledPositions.Add(WaveRows[(WaveRows.Count - 1) - y][x].GetComponent<Enemy>().GetNumInRow());
+                    WaveRows[(WaveRows.Count - 1) - y][x].GetComponent<Enemy>().SetFront(true);
+                }
             }
         }
     }
