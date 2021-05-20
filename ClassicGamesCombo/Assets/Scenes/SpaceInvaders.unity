@@ -349,6 +349,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7245409061621642959, guid: 53aa0f9adefd7384897a5649128db152, type: 3}
+      propertyPath: LivesGO
+      value: 
+      objectReference: {fileID: 781762576}
     - target: {fileID: 7564948490258004134, guid: 53aa0f9adefd7384897a5649128db152, type: 3}
       propertyPath: WaveTextGO
       value: 

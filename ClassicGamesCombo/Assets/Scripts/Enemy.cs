@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
 
-        ShotTimer = Random.value * Controller.FireRate;
+        ShotTimer = Random.value * Controller.FireRate + 0.5f;
         Direction = 1;
         GetComponent<SpriteRenderer>().color = Color.red;
         WaveController = _EnemyController.GetComponent<WaveSpawn>();
@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
         newBullet.GetComponent<Bullet>().SetTeam(-1);
         newBullet.GetComponent<Bullet>().SetDirection(-Vector2.up);
 
-        ShotTimer = Random.value * Controller.FireRate;
+        ShotTimer = Random.value * Controller.FireRate + 0.5f;
         //ShotTimer = Controller.FireRate;
     }
 

@@ -45,6 +45,8 @@ public class Bullet : MonoBehaviour
             {
                 collision.GetComponent<ShipController>().Health -= Controller.Damage;
                 Destroy(transform.gameObject);
+                if (collision.GetComponent<ShipController>().Health <= 0)
+                    collision.GetComponent<ShipController>().Die();
                 return;
             }
             if (collision.tag == "Enemy")
@@ -73,6 +75,8 @@ public class Bullet : MonoBehaviour
             if (collision.tag == "Player")
             {
                 collision.GetComponent<ShipController>().Health -= Controller.Damage;
+                if (collision.GetComponent<ShipController>().Health <= 0)
+                    collision.GetComponent<ShipController>().Die();
                 Destroy(transform.gameObject);
                 return;
             }

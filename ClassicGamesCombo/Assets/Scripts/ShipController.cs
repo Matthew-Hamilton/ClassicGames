@@ -75,6 +75,11 @@ public class ShipController : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+
+    }
+
     void Fire()
     {
         GameObject newBullet = Instantiate(Bullet);
