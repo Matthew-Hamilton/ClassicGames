@@ -99,8 +99,11 @@ MonoBehaviour:
   Health: 0
   _EnemyController: {fileID: 8170480705921670323, guid: 53aa0f9adefd7384897a5649128db152, type: 3}
   myColour: {r: 0, g: 0, b: 0, a: 0}
+  numInRow: 0
   Direction: 0
   Destination: {x: 0, y: 0, z: 0}
+  isFront: 0
+  Bullet: {fileID: 6227341848648073101, guid: 4061ea798e3c8aa4aaf8a8284e3afe82, type: 3}
 --- !u!60 &572078410140744841
 PolygonCollider2D:
   m_ObjectHideFlags: 0
