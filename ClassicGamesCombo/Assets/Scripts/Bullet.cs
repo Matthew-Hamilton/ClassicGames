@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(Direction.x, Direction.y, 0) * Controller.Speed * Time.deltaTime;
-        if (transform.position.y > height / 2)
+        if (transform.position.y > height / 2 || transform.position.y < -height / 2)
             Destroy(transform.gameObject);
         
     }
@@ -43,10 +43,8 @@ public class Bullet : MonoBehaviour
         {
             if(collision.tag == "Player")
             {
-                collision.GetComponent<ShipController>().Health -= Controller.Damage;
+                collision.GetComponent<ShipController>().Die();
                 Destroy(transform.gameObject);
-                if (collision.GetComponent<ShipController>().Health <= 0)
-                    collision.GetComponent<ShipController>().Die();
                 return;
             }
             if (collision.tag == "Enemy")
@@ -74,10 +72,9 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Player")
             {
-                collision.GetComponent<ShipController>().Health -= Controller.Damage;
-                if (collision.GetComponent<ShipController>().Health <= 0)
-                    collision.GetComponent<ShipController>().Die();
+                collision.GetComponent<ShipController>().Die();
                 Destroy(transform.gameObject);
+                Debug.Log("Player Hit");
                 return;
             }
             return;

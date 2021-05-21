@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    public int Health = 10;
+    public GameObject Controller;
+    Lives lives;
 
     [Range(1,50)]
     public float PlayerMoveSpeed;
@@ -20,7 +21,7 @@ public class ShipController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        lives = Controller.GetComponent<Lives>();
         FireTimer = 0;
         cam = Camera.main;
         height = 2f * cam.orthographicSize;
@@ -77,7 +78,7 @@ public class ShipController : MonoBehaviour
 
     public void Die()
     {
-
+        lives.RemoveLife();
     }
 
     void Fire()
@@ -86,6 +87,7 @@ public class ShipController : MonoBehaviour
         newBullet.transform.position = transform.position;
         newBullet.GetComponent<Bullet>().SetTeam(1);
         newBullet.GetComponent<Bullet>().SetDirection(Vector2.up);
+        newBullet.transform.SetParent(transform.parent);
 
         FireTimer = FireRate;
     }

@@ -82,6 +82,7 @@ public class Enemy : MonoBehaviour
         newBullet.transform.position = transform.position;
         newBullet.GetComponent<Bullet>().SetTeam(-1);
         newBullet.GetComponent<Bullet>().SetDirection(-Vector2.up);
+        newBullet.transform.SetParent(transform.parent);
 
         ShotTimer = Random.value * Controller.FireRate + 0.5f;
         //ShotTimer = Controller.FireRate;

@@ -9,12 +9,15 @@ public class Lives : MonoBehaviour
     public GameObject LivesGO;
     Text LivesText;
 
+    public GameObject GameLoopGO;
+    GameLoop GameLoopController;
+
     public int numLives = 3;
-    bool endGame = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameLoopController = GameLoopGO.GetComponent<GameLoop>();
         LivesText = LivesGO.GetComponent<Text>();
         UpdateLives();
     }
@@ -34,15 +37,24 @@ public class Lives : MonoBehaviour
 
     void UpdateLives()
     {
+
+        LivesGO.GetComponent<Text>().text = "LIVES: ";
+        for (int i = 0; i < numLives; i++)
+        {
+            LivesGO.GetComponent<Text>().text += "I ";
+        }
+
         if (numLives <= 0)
         {
-            endGame = true;
+            Debug.Log("Should call endGame");
+            GameLoopController.EndGame();
             return;
         }
-        LivesText.text = "LIVES: ";
-        for(int i = 0; i <numLives; i++)
-        {
-            LivesText.text += "I ";
-        }
+    }
+
+    public void SetLives(int _numLives)
+    {
+        numLives = _numLives;
+        UpdateLives();
     }
 }

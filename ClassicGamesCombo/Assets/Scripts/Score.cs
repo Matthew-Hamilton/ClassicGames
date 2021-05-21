@@ -28,4 +28,15 @@ public class Score : MonoBehaviour
         GameScore += Points;
         ScoreText.text = "Score: " + GameScore.ToString();
     }
+
+    public void SetScore(int Points)
+    {
+        GameScore = Points;
+        transform.gameObject.GetComponent<Text>().text = "Score: " + Points.ToString();
+    }
+
+    public int GetScore()
+    {
+        return GameScore;
+    }
 }
