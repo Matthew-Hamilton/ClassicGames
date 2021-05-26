@@ -88,6 +88,7 @@ public class WaveSpawn : MonoBehaviour
                 newEnemy.GetComponent<Enemy>().SetColour(rowColour);
                 newEnemy.GetComponent<Enemy>().SetController(Controller);
                 newEnemy.GetComponent<Enemy>().SetNumInRow(x);
+                newEnemy.transform.SetParent(transform.parent);
                 if(y == numRows -1)
                     newEnemy.GetComponent<Enemy>().SetFront(true);
                 else
@@ -121,5 +122,16 @@ public class WaveSpawn : MonoBehaviour
     {
         WaveTextGO.active = false;
         WaveCountDownGO.active = false;
+    }
+
+    public void Restart()
+    {
+
+        Controller = enemyController.GetComponent<EnemyController>();
+        roundNumber = 1;
+        numRows = 2;
+        numPerRow = 6;
+        Controller.MoveFrequency = 1;
+        Controller.NumAlive = 0;
     }
 }

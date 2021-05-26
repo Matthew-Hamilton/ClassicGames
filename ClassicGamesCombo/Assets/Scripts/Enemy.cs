@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
 
-        ShotTimer = Random.value * Controller.FireRate;
+        ShotTimer = Random.value * Controller.FireRate + 0.5f;
         Direction = 1;
         GetComponent<SpriteRenderer>().color = Color.red;
         WaveController = _EnemyController.GetComponent<WaveSpawn>();
@@ -73,6 +73,14 @@ public class Enemy : MonoBehaviour
             Debug.Log("Destination: " +Destination);
             Controller.SetCheckDrop();
             MoveTimer = Controller.MoveFrequency;
+
+            Debug.Log("Y Pos:" + transform.position);
+            if (transform.position.y <= -5.5 && !Controller.DestReachedLock)
+            {
+                Controller.DestReachedLock = true;
+                Controller.DestinationReached(transform.gameObject);
+                Debug.Log("Reached Bottom");
+            }
         }
     }
 
@@ -82,10 +90,12 @@ public class Enemy : MonoBehaviour
         newBullet.transform.position = transform.position;
         newBullet.GetComponent<Bullet>().SetTeam(-1);
         newBullet.GetComponent<Bullet>().SetDirection(-Vector2.up);
+        newBullet.transform.SetParent(transform.parent);
 
-        ShotTimer = Random.value * Controller.FireRate;
+        ShotTimer = Random.value * Controller.FireRate + 0.5f;
         //ShotTimer = Controller.FireRate;
     }
+
 
     public void ChangeDirection()
     {

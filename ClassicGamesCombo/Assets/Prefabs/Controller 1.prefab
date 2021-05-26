@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8170480705921670322}
   - component: {fileID: 7564948490258004134}
   - component: {fileID: 8170480705921670335}
+  - component: {fileID: 7245409061621642959}
   m_Layer: 0
   m_Name: Controller 1
   m_TagString: Untagged
@@ -87,3 +88,17 @@ MonoBehaviour:
   CheckDrop: 1
   height: 0
   width: 0
+--- !u!114 &7245409061621642959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170480705921670323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01d0dc51d1529dd4e8df4a793ef29cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LivesGO: {fileID: 0}
+  numLives: 3

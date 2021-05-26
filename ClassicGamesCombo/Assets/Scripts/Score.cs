@@ -26,6 +26,17 @@ public class Score : MonoBehaviour
     public void AddScore(int Points)
     {
         GameScore += Points;
-        ScoreText.text = "Score: " + GameScore.ToString();
+        ScoreText.text = "SCORE: " + GameScore.ToString();
+    }
+
+    public void SetScore(int Points)
+    {
+        GameScore = Points;
+        transform.gameObject.GetComponent<Text>().text = "SCORE: " + Points.ToString();
+    }
+
+    public int GetScore()
+    {
+        return GameScore;
     }
 }
