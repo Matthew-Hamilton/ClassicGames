@@ -73,6 +73,14 @@ public class Enemy : MonoBehaviour
             Debug.Log("Destination: " +Destination);
             Controller.SetCheckDrop();
             MoveTimer = Controller.MoveFrequency;
+
+            Debug.Log("Y Pos:" + transform.position);
+            if (transform.position.y <= -5.5 && !Controller.DestReachedLock)
+            {
+                Controller.DestReachedLock = true;
+                Controller.DestinationReached(transform.gameObject);
+                Debug.Log("Reached Bottom");
+            }
         }
     }
 
@@ -87,6 +95,7 @@ public class Enemy : MonoBehaviour
         ShotTimer = Random.value * Controller.FireRate + 0.5f;
         //ShotTimer = Controller.FireRate;
     }
+
 
     public void ChangeDirection()
     {

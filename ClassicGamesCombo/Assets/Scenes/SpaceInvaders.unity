@@ -516,7 +516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385641546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6624914, y: -11.5262575, z: 0.38456663}
+  m_LocalPosition: {x: -0.6624914, y: -11, z: 0.38456663}
   m_LocalScale: {x: 50, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 564404286}
@@ -655,6 +655,10 @@ PrefabInstance:
       propertyPath: ScoreGO
       value: 
       objectReference: {fileID: 291654488}
+    - target: {fileID: 8170480705921670335, guid: 53aa0f9adefd7384897a5649128db152, type: 3}
+      propertyPath: LivesGO
+      value: 
+      objectReference: {fileID: 781762576}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53aa0f9adefd7384897a5649128db152, type: 3}
 --- !u!1 &596196605

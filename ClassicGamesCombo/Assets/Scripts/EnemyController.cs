@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
 {
 
     public GameObject ScoreGO;
+    public GameObject LivesGO;
+    Lives lives;
     Score score;
     public float MoveFrequency = 1;
     public float MoveSpeed = 10;
@@ -19,9 +21,13 @@ public class EnemyController : MonoBehaviour
 
     public List<List<GameObject>> WaveRows;
 
+    private bool destReachedLock = false;
+
     Camera cam;
     public float height;
     public float width;
+
+    public bool DestReachedLock { get => destReachedLock; set => destReachedLock = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -112,6 +118,41 @@ public class EnemyController : MonoBehaviour
                 return;
             }
         }
+    }
+
+
+    public void DestinationReached(GameObject enemy)
+    {
+
+        for (int i = 0; i < WaveRows.Count; i++)
+        {
+            if(WaveRows[i].Contains(enemy))
+            {
+                for (int j = 0; j < WaveRows[i].Count; j++)
+                {
+                    NumAlive--;
+                    Destroy(WaveRows[i][j]);
+                    WaveRows[i].RemoveAt(j);
+                    score.AddScore(-30);
+                }
+
+                if (WaveRows[i].Count <= 0)
+                {
+                    WaveRows.RemoveAt(i);
+                }
+                break;
+            }
+        }
+
+
+        if (transform.gameObject.TryGetComponent<Lives>(out lives))
+        {
+            Debug.Log("Life lost");
+            lives.RemoveLife();
+        }
+
+        RecalculateFront();
+        destReachedLock = false;
     }
 
     public void RecalculateFront()
